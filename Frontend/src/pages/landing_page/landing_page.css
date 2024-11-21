@@ -1,0 +1,45 @@
+.bg-1 {
+    width: 100%;
+    height: 750px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-image: url("../../assets/banner-bg.jpg");
+  }
+  
+  .header{
+    background-color: #2D2552;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+    height: 65px;
+  }
+  .header_content {
+    width: 95%;
+    height: 65px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* Distribute space between items */
+    background-color: #2D2552;
+    padding: 10 20px; /* Add padding for spacing around the header */
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    margin-left: 1%;
+    margin-top: 3px;
+    width: 300px; /* Adjust based on your logo size */
+    height: 60px;
+    background-image: url("../../assets/logo.png");
+    background-repeat: no-repeat;
+    background-size: contain; /* Ensure the logo fits the container */
+  }
+  .button{
+    margin-top: 10px;
+  }
+  
+
+
+  

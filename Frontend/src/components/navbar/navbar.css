@@ -1,0 +1,27 @@
+.nav {
+  display: flex; /* Enables flexbox layout */
+  flex-wrap: nowrap; /* Prevents wrapping */
+  flex-direction: row; /* Horizontal layout */
+  justify-content: flex-end; /* Aligns items to the right */
+  align-items: end; /* Vertically centers items */
+  max-width: 80%; /* Full width for the navbar */
+  height: 50px; /* Navbar height */
+}
+
+.nav a {
+  color: white; /* Text color for links */
+  padding: 5px 30px; /* Space around each link */
+  text-decoration: none; /* Removes underline */
+  font-size: 16px; /* Font size */
+  font-style: bold;
+}
+.nav a:hover {
+  color: white;
+  font-style: none;
+  background-color: black;
+  border-radius: 4px;
+  transform: scale(1.05);
+  transition: ease-in 137ms;
+
+}
+
