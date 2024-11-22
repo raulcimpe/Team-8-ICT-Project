@@ -1,15 +1,25 @@
-import React from 'react'
-import Landing_page from './pages/landing_page/landing_page'
-function App() {
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
+
+import LandingPage from "@/pages/landing_page/LandingPage";
+import About from "@/pages/landing_page/about/About";
+import Solutionise from "@/pages/landing_page/solutionise/Solutionise";
+
+
+const App = () => {
   return (
-    <>
-      <div className='bg-1'>
-        <Landing_page/>
+    <Router>
+      <Routes>
+        {/* Landing Page */}  
+        {/* Nested Landing Page Routes */}
+        <Route path="/about" element={<About />} />
+        <Route path="/" element={<Solutionise />} />
 
+        {/* Future routes can be added here */}
+      </Routes>
+    </Router>
+  );
+};
 
-      </div>
-    </>
-  )
-}
-
-export default App
+export default App;

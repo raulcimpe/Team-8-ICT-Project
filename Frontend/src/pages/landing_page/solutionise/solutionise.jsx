@@ -1,23 +1,12 @@
-import "./Landing_page.css";
-import Button from "../../components/Button/button";
-import Card from "../../components/Card/Card";
 import React from "react";
-import Navbar from "../../components/navbar/navbar";
-function Landing_page() {
+import Card from "../../../components/Card/Card";
+import Header from "../../../components/Header/Header";
+import "./solutionise.css";
+function Solutionise() {
   return (
     <><div className="page">
       <div className="bg-1">
-        <div className="header">
-          <div className="header_content">
-            {/* logo image sorce is in the css file */}
-            <div className="logo" />
-
-            <Navbar />
-            <div className="button">
-              <Button />
-            </div>
-          </div>
-        </div>
+        <Header/>
         <div className="container">
 
          <h1>Your Partner in Local<br /> <span class="fancy">Growth and Innovation</span></h1>
@@ -37,4 +26,4 @@ function Landing_page() {
   );
 }
 
-export default Landing_page;
+export default Solutionise;
