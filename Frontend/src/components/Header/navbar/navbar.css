@@ -6,6 +6,7 @@
   align-items: end; /* Vertically centers items */
   max-width: 80%; /* Full width for the navbar */
   height: 50px; /* Navbar height */
+  position:relative;
 }
 
 .nav a {

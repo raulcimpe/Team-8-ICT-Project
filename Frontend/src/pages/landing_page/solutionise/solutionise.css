@@ -1,46 +1,50 @@
 #root{
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
-.bg-1 {
+.page {
   position: relative; /* Ensures the pseudo-element positions correctly */
   width: 100vw;
   height: 100vh;
+  text-align: center;
+  justify-content: center;
   overflow: hidden; /* Prevents overflow issues if content exceeds the bounds */
 }
 
-.bg-1::before {
+.page::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url("../../../assets/banner-bg.jpg");
+  background: linear-gradient(
+      rgba(5, 5, 5, 0.4), /* Top shade (transparent black) */
+      rgba(77, 131, 182, 0.6) /* Bottom shade (teal with opacity) */
+    ),
+    url("../../../assets/banner-bg.jpg"); /* Add the background image */
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  opacity: 0.2; /* Adjust to your desired transparency */
-  z-index: -1; /* Places the background behind the content */
+  opacity: 1; /* Keep it fully visible since transparency is in gradient */
+  z-index: -1; /* Ensures it stays behind the content */
 }
-  
 .container{
-  margin-top: 1%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  height: 90vh;
+  margin-top: 10%;
   width: 100vw;
-  
-
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 2%;
+  grid-template-rows: 20% 20% 60%; /* Define height percentages for rows */
+  grid-template-columns: 100%; /* Full-width for each row */  
 }
-
   h1 {
     font-size: 4vw;
     text-transform: uppercase;
     text-align: center;
-    line-height: 1;
-  
-    
-    
+    line-height: 1;   
   }
   
   .fancy {
@@ -65,8 +69,139 @@ p{
   text-shadow: 2px 2px 4px black;
 }
 .cards_container{
-  display: flex;
   width: 100vw;
-  height: 20vh;
+  display: flex;
+  flex-direction: row;
+  text-align: center;
   justify-content: center;
+  align-items: center;
+  gap: 1%;
+  margin-bottom: 10%;
+  margin-left: 1%;
+
+
+}
+
+
+
+
+
+.cards_container .card .face {
+width:95%;
+height: 200px;
+transition: 0.4s;
+
+}
+
+.cards_container .card .face.face1 {
+position: relative;
+background: linear-gradient(45deg, #2d2552, #054997);
+display: flex;
+justify-content: center;
+align-content: center;
+align-items: center;
+z-index: 1;
+border-radius: 8px;
+transform: translateY(100px);
+}
+
+.cards_container .card:hover .face.face1 {
+transform: translateY(0);
+box-shadow: inset 0 0 60px rgb(73, 156, 250), inset 20px 0 80px #4999fb,
+  inset -20px 0 80px #054997, inset 20px 0 300px #7daff0,
+  inset -20px 0 300px #054997, 0 0 20px #054997, -10px 0 80px #054997,
+  10px 0 80px rgb(55, 155, 255);
+}
+
+.cards_container .card .face.face1 .content {
+transition: 0.5s;
+text-align: center;
+border-radius: 10px;
+border-width: 2px;
+}
+
+.cards_container .card:hover .face.face1 .content {
+opacity: 1;
+}
+
+.cards_container .card .face.face1 .content i {
+font-size: 3em;
+color: black;
+display: inline-block;
+}
+
+.cards_container .card .face.face1 .content h3 {
+font-size: 0.5em;
+color: black;
+text-align: center;
+}
+
+.cards_container .card .face.face1 .content a {
+transition: 0.5s;
+}
+
+.cards_container .card .face.face2 {
+position: relative;
+background: black;
+display: flex;
+align-items: center;
+border-radius: 8px;
+justify-content: center;
+padding: 20px;
+box-sizing: border-box;
+box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+transform: translateY(-100px);
+}
+
+.cards_container .card:hover .face.face2 {
+transform: translateY(0);
+}
+
+.cards_container .card .face.face2 .content p,
+a {
+font-size: 10pt;
+margin: 0;
+padding: 0;
+color: white;
+}
+
+.cards_container .card .face.face2 .content a {
+text-decoration: none;
+color: white;
+box-sizing: border-box;
+outline: 1px dashed #333;
+padding: 10px;
+margin: 15px 0 0;
+display: inline-block;
+}
+
+.cards_container .card .face.face2 .content a:hover {
+background: #333;
+color: whitesmoke;
+box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.5);
+}
+
+.van_logo {
+width: 60px;
+height: 55px;
+background-repeat: no-repeat;
+background-image: url("../../../assets/ambulance.png");
+}
+.calendar {
+width: 60px;
+height: 55px;
+background-repeat: no-repeat;
+background-image: url("../../../assets/calendar.png");
+}
+.staff {
+width: 60px;
+height: 55px;
+background-repeat: no-repeat;
+background-image: url("../../../assets/staff.png")
+}
+
+.content {
+display: flex;
+flex-direction: column;
+align-items: center;
 }

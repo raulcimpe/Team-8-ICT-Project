@@ -3,8 +3,10 @@
   display: flex;
   align-items: center;
   flex-direction: row;
-  width: 100%;
+  width: 100vw;
   height: 65px;
+  z-index: 1000;
+  position: fixed;
 }
 .header_content {
   width: 95%;
@@ -14,6 +16,8 @@
   justify-content: space-between; /* Distribute space between items */
   background: linear-gradient(45deg, #2d2552, #054997);
   padding: 10 20px; /* Add padding for spacing around the header */
+  z-index: 1001;
+  position: fixed;
 }
 
 .logo {

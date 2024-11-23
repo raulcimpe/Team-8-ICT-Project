@@ -1,19 +1,23 @@
-import { Link } from 'react-router-dom';  // Import Link from react-router-dom
+
+import React from "react";
+import { Link } from "react-scroll";
+
 import "./navbar.css";
 
 function Navbar() {
   return (
     <div className="nav">
-      {/* Use Link instead of a regular anchor tag */}
-      <Link to="/">Solutionise</Link>  
-      <Link to="/about">About us</Link>  
-      <Link to="#services">Services</Link>
-      <Link to="#our-experts">Our experts</Link>
-      <Link to="#reviews">Reviews</Link>
-      <Link to="#blog">Blog</Link>
-      <Link to="#faq">Faq</Link>
+      {/* Use Link from react-scroll */}
+      <Link to="solutionise" smooth={true} duration={500}>Solutionise</Link>
+      <Link to="about" smooth={true} duration={500}>About Us</Link>
+      <Link to="services" smooth={true} duration={500}>Services</Link>
+      <Link to="experts" smooth={true} duration={500}>Our Experts</Link>
+      <Link to="reviews" smooth={true} duration={500}>Reviews</Link>
+      <Link to="blog" smooth={true} duration={500}>Blog</Link>
+      <Link to="faq" smooth={true} duration={500}>FAQ</Link>
     </div>
   );
 }
 
 export default Navbar;
+

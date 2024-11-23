@@ -1,15 +1,24 @@
+
+
 import React from "react";
-import { Link } from "react-router-dom";
+import Solutionise from "./solutionise/solutionise";
+import About from "./about/about";
+import "./LandingPage.css";
 
 const LandingPage = () => {
   return (
-    <div>
-      <nav>
-        <Link to="/solutionise">Solutionise</Link>
-        <Link to="/about">About</Link>
-      </nav>
+    <div className="landing-page">
+
+      {/* Scrollable sections */}
+      <section id="solutionise">
+        <Solutionise />
+      </section>
+      <section id="about">
+        <About />
+      </section>
     </div>
   );
 };
 
 export default LandingPage;
+
