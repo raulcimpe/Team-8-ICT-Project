@@ -15,11 +15,11 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   background: linear-gradient(
-      rgba(5, 5, 5, 0.4), /* Top shade (transparent black) */
-      rgba(77, 131, 182, 0.6) /* Bottom shade (teal with opacity) */
+      rgba(0, 0, 0, 0.7), /* Top shade (transparent black) */
+      rgba(0, 0, 0, 0.3) /* Bottom shade (teal with opacity) */
     ),
     url("../../../assets/banner-bg.jpg"); /* Add the background image */
   background-size: cover;
@@ -30,21 +30,22 @@
 }
 .container{
   display: grid;
-  height: 90vh;
-  margin-top: 10%;
+  margin-top: 4%;
+  height: 100vh;
   width: 100vw;
   justify-content: center;
   align-items: center;
   text-align: center;
-  gap: 2%;
-  grid-template-rows: 20% 20% 60%; /* Define height percentages for rows */
+
+  grid-template-rows: 25% 30% 45%; /* Define height percentages for rows */
   grid-template-columns: 100%; /* Full-width for each row */  
 }
   h1 {
     font-size: 4vw;
     text-transform: uppercase;
     text-align: center;
-    line-height: 1;   
+    line-height: 1;  
+    margin-top: 10%; 
   }
   
   .fancy {
@@ -62,32 +63,32 @@ p{
   font-size: 19px;
 
   align-items: center;
+  
+
   text-align: center;
   color: white;
   font-weight: bolder;
   letter-spacing: 1.3px ;
-  text-shadow: 2px 2px 4px black;
+  text-shadow: 
+    -1px -1px 0 black, /* Top-left shadow */
+    1px -1px 0 black,  /* Top-right shadow */
+    -1px 1px 0 black,  /* Bottom-left shadow */
+    1px 1px 0 black;   
 }
 .cards_container{
   width: 100vw;
   display: flex;
   flex-direction: row;
   text-align: center;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
-  gap: 1%;
-  margin-bottom: 10%;
+  margin-bottom: 7%;
   margin-left: 1%;
-
 
 }
 
-
-
-
-
 .cards_container .card .face {
-width:95%;
+width:92%;
 height: 200px;
 transition: 0.4s;
 

@@ -17,10 +17,7 @@ function Solutionise() {
             fostering <br />
             innovation for businesses in our community. With a deep
             understanding <br />
-            of industry trends and a passion for practical solutions, our team
-            provides <br />
-            tailored strategies that empower local companies to reach new
-            heights.
+            of industry trends and a passion for practical solutions.
           </p>
           <div className="cards_container">
             {/* Card 1 */}
