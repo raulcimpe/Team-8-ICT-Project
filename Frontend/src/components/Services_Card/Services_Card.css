@@ -1,0 +1,151 @@
+
+  .wrapper h1 {
+    font-size: 2.5rem;
+    font-family: 'Montserrat';
+    font-weight: normal;
+    color: white;
+    text-align: center;
+    padding-top: 67px; 
+  }
+  
+  .wrapper {
+    width:100vw;
+    height: 100vh;
+    margin-top: -10%;
+  }
+  
+  .cols {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 40%;
+  }
+  
+  .col {
+    width: calc(30% - 4rem);
+    cursor: pointer;
+    margin-top: 2%;
+    margin-left: 4.5%;
+
+  }
+  
+  .services_container {
+    transform-style: preserve-3d;
+    perspective:1700px;
+    height: 40%;
+  }
+  
+  .front, .back {
+    background-size: cover;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    background-position: center;
+    transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    backface-visibility: hidden;
+    text-align: center;
+    min-height: 280px;
+    width: 300px;
+    color: #fff;
+    font-size: 1.5rem;
+  }
+  
+  .back {
+    background: linear-gradient(45deg, #cedce7 0%, #010a15 100%);
+  }
+  
+  .front:after {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    content: '';
+    opacity: 0.6;
+    background-color: #000;
+    backface-visibility: hidden;
+    border-radius: 10px;
+  }
+
+  .services_container:hover .front, .services_container:hover .back {
+    transition: transform 0.7s cubic-bezier(0.4, 0.1, 0.3, 1);
+  }
+  
+  .back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 300px;
+    min-height: 280px;
+
+  }
+  
+  .inner {
+    transform: translateY(-50%) translateZ(60px) scale(0.94);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 300px;
+    padding: 2rem;
+    box-sizing: border-box;
+    z-index: 2;
+  }
+  
+  .services_container .back {
+    transform: rotateY(180deg);
+ 
+  }
+  
+  .services_container .front {
+    transform: rotateY(0deg);
+  }
+  
+  .services_container:hover .back {
+    transform: rotateY(0deg);
+    transform: translateY(-5%);
+    
+  }
+  
+  .services_container:hover .front {
+    transform: rotateY(-180deg);
+  }
+  
+  .front .inner p {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  
+  .front .inner p:after {
+    content: '';
+    width: 4rem;
+    height: 2px;
+    background: #C6D4DF;
+    margin: 0 auto;
+    bottom: -0.75rem;
+  }
+  
+  .front .inner span {
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Montserrat';
+    font-weight: 300;
+  }
+  @media screen and (max-width: 64rem){
+    .col{
+      width: calc(33.333333% - 2rem);
+    }
+  }
+  
+  @media screen and (max-width: 48rem){
+    .col{
+      width: calc(50% - 2rem);
+    }
+  }
+  
+  @media screen and (max-width: 32rem){
+    .col{
+      width: 100%;
+      margin: 0 0 2rem 0;
+    }
+  }
+ 
