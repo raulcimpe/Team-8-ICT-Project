@@ -7,6 +7,7 @@
   max-width: 80%; /* Full width for the navbar */
   height: 50px; /* Navbar height */
   position:relative;
+  cursor: pointer;
 }
 
 .nav a {
