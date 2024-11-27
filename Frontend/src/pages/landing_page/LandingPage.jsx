@@ -2,6 +2,7 @@
 
 import React from "react";
 import Solutionise from "./solutionise/solutionise";
+import Expert from "./expert/expert";
 import About from "./about/about";
 import Services from "./services_page/Services";
 import "./LandingPage.css";
@@ -19,6 +20,9 @@ const LandingPage = () => {
       </section>
       <section id="services">
         <Services />
+      </section>
+      <section id="expert">
+        <Expert />
       </section>
     </div>
   );
