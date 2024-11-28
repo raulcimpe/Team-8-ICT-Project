@@ -6,6 +6,7 @@ import Expert from "./expert/expert";
 import About from "./about/about";
 import Services from "./services_page/Services";
 import "./LandingPage.css";
+import Reviews from "./reviews/reviews";
 
 const LandingPage = () => {
   return (
@@ -23,6 +24,9 @@ const LandingPage = () => {
       </section>
       <section id="expert">
         <Expert />
+      </section>
+      <section id="reviews">
+        <Reviews/>
       </section>
     </div>
   );
