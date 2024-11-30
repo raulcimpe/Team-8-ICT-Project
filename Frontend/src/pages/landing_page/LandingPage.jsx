@@ -8,6 +8,7 @@ import Services from "./services_page/Services";
 import "./LandingPage.css";
 import Reviews from "./reviews/reviews";
 import Blog from "./blog/blog";
+import Faq from "./faq/faq";
 
 const LandingPage = () => {
   return (
@@ -32,6 +33,10 @@ const LandingPage = () => {
       <section id="blog">
         <Blog/>
       </section>
+      <section id="faq">
+        <Faq/>
+      </section>
+
     </div>
   );
 };
