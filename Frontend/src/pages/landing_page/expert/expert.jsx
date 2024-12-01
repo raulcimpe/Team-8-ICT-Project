@@ -7,8 +7,7 @@ const expert = () => {
     <div className='expert_container'>
         <div className='upperbox'>
         <h2>Our Experts</h2>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem aspernatur dolore repudiandae itaque, quo nobis dolorem nemo delectus iure illo deserunt commodi eveniet excepturi dolorum perspiciatis quos corrupti. Tempore, perferendis.
-        Amet iste obcaecati nulla mm,di dictaea. Commodi delectus saepe, enim nihil repellat perspiciatis reprehenderit veritatis facere minus quasi.</p>
+        <p>"Our experts are a dedicated team of professionals, bringing together diverse expertise from fields such as business, law, IT, and engineering. They work collaboratively to offer practical advice and solutions tailored to the needs of small and medium-sized enterprises. With extensive experience in areas like legal consulting, business strategy, and digital solutions, our experts are committed to empowering businesses to grow and succeed. Whether you're starting out or looking to refine your operations, our team is here to provide actionable insights, support, and guidance every step of the way."</p>
         </div>
         <div className='expert_cards'><Expert_Card/></div>
     </div>
