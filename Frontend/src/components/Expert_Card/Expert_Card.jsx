@@ -10,7 +10,7 @@ const Expert_Card = () => {
 
         <div className="carousel__container">
           {/** Repeated card items */}
-          {[1, 2, 3, 4, 5, 6, 7].map((item, index) => (
+          {[1, 2, 3, 4, 5, 6,7].map((item, index) => (
             <div key={index} className="carousel-item">
               <img
                 className="carousel-item__img"
