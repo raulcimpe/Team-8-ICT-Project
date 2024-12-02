@@ -4,6 +4,7 @@ import "./reviews.css"
 const Reviews = () => {
   return (
     <div className='reviews_container'>
+      
 
     </div>
   )
