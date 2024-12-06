@@ -1,0 +1,11 @@
+.reviews_grid{
+    display: grid;
+    width: 95vw;
+    height: 95vh;
+}
+
+.card{
+    width: 10%;
+    height: 5%;
+    background-color: black;
+}
