@@ -8,43 +8,42 @@ import T5 from "../../../assets/T5.jpg";
 import T6 from "../../../assets/T6.jpg";
 
 const Reviews = () => {
-  // Dynamic data for reviews
   const reviewData = [
     {
       id: 1,
       photo: T1,
       name: "John Doe",
-      review: "This is an amazing service! Highly recommend it.",
+      reviews: "This is an amazing service! Highly recommend it.",
     },
     {
       id: 2,
       photo: T2,
       name: "Jane Smith",
-      review: "Had a wonderful experience, will definitely return.",
+      reviews: "Had a wonderful experience, will definitely return.",
     },
     {
       id: 3,
       photo: T3,
       name: "Alice Johnson",
-      review: "Top-notch quality and excellent support!",
+      reviews: "Top-notch quality and excellent support!",
     },
     {
       id: 4,
       photo: T4,
       name: "Robert Brown",
-      review: "Impressive! Exceeded my expectations.",
+      reviews: "Impressive! Exceeded my expectations.",
     },
     {
       id: 5,
       photo: T5,
       name: "Emma Wilson",
-      review: "A delightful experience. Five stars!",
+      reviews: "A delightful experience. Five stars!",
     },
     {
       id: 6,
       photo: T6,
       name: "Oliver Davis",
-      review: "Professional and reliable service.",
+      reviews: "Professional and reliable service.",
     },
   ];
 
@@ -58,7 +57,7 @@ const Reviews = () => {
             </div>
             <div className="review_content">
               <h3>{review.name}</h3>
-              <p>{review.review}</p>
+              <p>{review.reviews}</p>
             </div>
           </div>
         ))}
