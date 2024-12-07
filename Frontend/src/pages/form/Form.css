@@ -1,0 +1,123 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text for contrast */
+  }
+  
+  .form-container {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 20px;
+    border-radius: 10px;
+    background: #1e1e1e; /* Slightly lighter dark background */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.7); /* Subtle shadow for depth */
+  }
+  
+ .form_container h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #90caf9; /* Soft blue for headings */
+  }
+  
+  .form_container label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #90caf9; /* Light purple for labels */
+  }
+  
+  input,
+  textarea,
+  select,
+  button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border: 1px solid #333; /* Border blends into dark theme */
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #2c2c2c; /* Darker input background */
+    color: #e0e0e0; /* Light text */
+  }
+  
+  textarea {
+    resize: none;
+  }
+  
+  .form_container  button {
+    background-color: #90caf9; /* Bright blue button */
+    color: #121212; /* Dark text on buttons */
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .form_container button:hover {
+    background-color: #64b5f6; /* Slightly darker blue on hover */
+    transform: translateY(-2px); /* Elevation effect */
+  }
+  
+  .radio-group,
+  .checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  
+  .checkbox-group > div {
+    flex: 1 1 150px;
+    color: #e0e0e0;
+  }
+  
+  input[type="radio"],
+  input[type="checkbox"] {
+    margin-right: 10px;
+  }
+  
+  input:focus,
+  textarea:focus,
+  select:focus {
+    outline: none;
+    border: 1px solid #90caf9; /* Highlight border on focus */
+    box-shadow: 0 0 5px rgba(144, 202, 249, 0.8); /* Glow effect */
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form_container a {
+    color: #90caf9; /* Light purple links */
+    text-decoration: none;
+  }
+  
+  .form_container a:hover {
+    text-decoration: underline;
+  }
+  
+  .form_container h3 {
+    margin-top: 20px;
+    color: #90caf9;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #1e1e1e; /* Dark scrollbar track */
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #90caf9; /* Bright blue thumb */
+    border-radius: 5px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #64b5f6; /* Hover effect on scrollbar */
+  }
+  
