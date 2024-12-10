@@ -1,5 +1,4 @@
 module.exports = [
-    // Reminders for upcoming appointments
     {
       user_id: 1,
       notification_type: "Reminder",
@@ -21,8 +20,6 @@ module.exports = [
       status: "Pending",
       sent_at: null,
     },
-  
-    // Alerts about updates
     {
       user_id: 4,
       notification_type: "Alert",
@@ -37,8 +34,6 @@ module.exports = [
       status: "Sent",
       sent_at: "2024-11-21 10:45:00",
     },
-  
-    // Updates about changes in schedules
     {
       user_id: 1,
       notification_type: "Update",
@@ -53,8 +48,6 @@ module.exports = [
       status: "Read",
       sent_at: "2024-11-20 14:00:00",
     },
-  
-    // General Notifications
     {
       user_id: 2,
       notification_type: "General",

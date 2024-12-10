@@ -61,10 +61,12 @@ describe("app", () => {
   });
   describe("/users", () => {
     test("GET 200: returns an object of all the users", () => {
-      return request(app).get('/users').then(({body}) => {
-        expect(body.users).toHaveLength(5)
-        body.users.forEach((user) => {
-          expect(user).toHaveProperty("username");
+      return request(app)
+        .get("/users")
+        .then(({ body }) => {
+          expect(body.users).toHaveLength(5);
+          body.users.forEach((user) => {
+            expect(user).toHaveProperty("username");
             expect(user).toHaveProperty("password");
             expect(user).toHaveProperty("firstname");
             expect(user).toHaveProperty("lastname");
@@ -81,34 +83,39 @@ describe("app", () => {
             expect(user).toHaveProperty("phone");
             expect(user).toHaveProperty("problemdescription");
             expect(user).toHaveProperty("socialmedia");
-            expect(user).toHaveProperty("socialmedialinks");  
-        })
-      })
-    })
+            expect(user).toHaveProperty("socialmedialinks");
+          });
+        });
+    });
     test("POST 201: returns a newly-added user", () => {
       const newUser = {
-        
-      firstName: "test",
-      lastName: "test",
-      username: "testuser",
-      password: "password123",
-      email: "testingh@example.com",
-      phone: "+44 7700 900001",
-      businessName: "test solutions",
-      businessStage: "Established",
-      businessDescription: "A tech consultancy providing IT solutions to SMEs.",
-      businessIndustry: "Legal",
-      businessRegistered: true,
-      businessPostcode: "CR0 2YR",
-      businessPhone: "+44 7700 800001",
-      businessWebsite: "https://smithtechsolutions.com",
-      socialMedia: ["LinkedIn", "Twitter"],
-      socialMediaLinks: ["https://linkedin.com/smithtech", "https://twitter.com/smithtech"],
-      help: ["Cyber Security", "Data Protection"],
-      areasHelpNeeded: "Improving data security and compliance with GDPR regulations.",
-      problemDescription: "Need a thorough security audit and advice on data compliance.",
-      lsbuStudOrAlum: false
-      }
+        firstName: "test",
+        lastName: "test",
+        username: "testuser",
+        password: "password123",
+        email: "testingh@example.com",
+        phone: "+44 7700 900001",
+        businessName: "test solutions",
+        businessStage: "Established",
+        businessDescription:
+          "A tech consultancy providing IT solutions to SMEs.",
+        businessIndustry: "Legal",
+        businessRegistered: true,
+        businessPostcode: "CR0 2YR",
+        businessPhone: "+44 7700 800001",
+        businessWebsite: "https://smithtechsolutions.com",
+        socialMedia: ["LinkedIn", "Twitter"],
+        socialMediaLinks: [
+          "https://linkedin.com/smithtech",
+          "https://twitter.com/smithtech",
+        ],
+        help: ["Cyber Security", "Data Protection"],
+        areasHelpNeeded:
+          "Improving data security and compliance with GDPR regulations.",
+        problemDescription:
+          "Need a thorough security audit and advice on data compliance.",
+        lsbuStudOrAlum: false,
+      };
       const expectedOutput = {
         user_id: 6,
         firstname: "test",
@@ -119,42 +126,58 @@ describe("app", () => {
         phone: "+44 7700 900001",
         businessname: "test solutions",
         businessstage: "Established",
-        businessdescription: "A tech consultancy providing IT solutions to SMEs.",
+        businessdescription:
+          "A tech consultancy providing IT solutions to SMEs.",
         businessindustry: "Legal",
         businessregistered: true,
         businesspostcode: "CR0 2YR",
         businessphone: "+44 7700 800001",
         businesswebsite: "https://smithtechsolutions.com",
         socialmedia: ["LinkedIn", "Twitter"],
-        socialmedialinks: ["https://linkedin.com/smithtech", "https://twitter.com/smithtech"],
+        socialmedialinks: [
+          "https://linkedin.com/smithtech",
+          "https://twitter.com/smithtech",
+        ],
         help: ["Cyber Security", "Data Protection"],
-        areashelpneeded: "Improving data security and compliance with GDPR regulations.",
-        problemdescription: "Need a thorough security audit and advice on data compliance.",
-        lsbustudoralum: false
-        }
-      return request(app).post('/users').send(newUser).expect(201).then(({body: user}) => {
-        expect(user).toMatchObject(expectedOutput)
-      })
-    })
-  })
+        areashelpneeded:
+          "Improving data security and compliance with GDPR regulations.",
+        problemdescription:
+          "Need a thorough security audit and advice on data compliance.",
+        lsbustudoralum: false,
+      };
+      return request(app)
+        .post("/users")
+        .send(newUser)
+        .expect(201)
+        .then(({ body: user }) => {
+          expect(user).toMatchObject(expectedOutput);
+        });
+    });
+  });
   describe("/appointments", () => {
     test("GET 200: return all the appointments", () => {
-      return request(app).get('/appointments').expect(200).then(({body}) => {
-        expect(body.appointments).toHaveLength(7)
-        body.appointments.forEach((appointment) => {
-          expect(appointment).toHaveProperty('client_id')
-          expect(appointment).toHaveProperty('appointment_date')
-          expect(appointment).toHaveProperty('appointment_type')
-          expect(appointment).toHaveProperty('notes')
-          expect(appointment).toHaveProperty('status')
-        })
-      })
-    })
+      return request(app)
+        .get("/appointments")
+        .expect(200)
+        .then(({ body }) => {
+          expect(body.appointments).toHaveLength(7);
+          body.appointments.forEach((appointment) => {
+            expect(appointment).toHaveProperty("client_id");
+            expect(appointment).toHaveProperty("appointment_date");
+            expect(appointment).toHaveProperty("appointment_type");
+            expect(appointment).toHaveProperty("notes");
+            expect(appointment).toHaveProperty("status");
+          });
+        });
+    });
     test("GET 200: return a specific appointment by the client id", () => {
-      return request(app).get('/appointments/1').expect(200).then(({body}) => {
-        expect(body.appointments).toHaveLength(2)
-      })
-    })
+      return request(app)
+        .get("/appointments/1")
+        .expect(200)
+        .then(({ body }) => {
+          expect(body.appointments).toHaveLength(2);
+        });
+    });
     test("POST 201: returns a newly added appointment", () => {
       const newAppointment = {
         client_firstname: "Emma",
@@ -162,22 +185,82 @@ describe("app", () => {
         appointment_date: "2024-12-23 11:00:00",
         appointment_type: "Online",
         status: "Scheduled",
-        notes: "A meeting to discuss the future plans"
-      }
+        notes: "A meeting to discuss the future plans",
+      };
       const expectedOutput = {
         appointment_id: 8,
         client_id: 2,
         appointment_date: "2024-12-23T11:00:00.000Z",
         appointment_type: "Online",
         status: "Scheduled",
-        notes: "A meeting to discuss the future plans"
-      }
-      return request(app).post('/appointments').send(newAppointment).expect(201).then(({body}) => {
-        expect(body).toMatchObject(expectedOutput)
-      })
-    })
+        notes: "A meeting to discuss the future plans",
+      };
+      return request(app)
+        .post("/appointments")
+        .send(newAppointment)
+        .expect(201)
+        .then(({ body }) => {
+          expect(body).toMatchObject(expectedOutput);
+        });
+    });
     test("DELETE 204: deletes an appointment by the appointment id", () => {
-      return request(app).delete("/appointments/1").expect(204)
+      return request(app).delete("/appointments/1").expect(204);
+    });
+  });
+  describe("/notifications", () => {
+    test("GET 200: return all the notifications", () => {
+      return request(app)
+        .get("/notifications")
+        .expect(200)
+        .then(({ body }) => {
+          expect(body.notifications).toHaveLength(10);
+          body.notifications.forEach((notification) => {
+            expect(notification).toHaveProperty("user_id");
+            expect(notification).toHaveProperty("notification_type");
+            expect(notification).toHaveProperty("message");
+            expect(notification).toHaveProperty("sent_at");
+            expect(notification).toHaveProperty("status");
+          });
+        });
+    });
+    test("GET 200: return specific notification by its id", () => {
+      return request(app)
+        .get("/notifications/1")
+        .expect(200)
+        .then(({ body: { notifications } }) => {
+          expect(notifications).toHaveLength(3);
+        });
+    });
+    test("POST 201: inserts a new notification", () => {
+      const newNotification = {
+        user_firstname: "Emma",
+        user_lastname: "Johnson",
+        notification_type: "General",
+        message:
+          "A new webinar on e-commerce trends is scheduled for 2024-11-30. Register now!",
+        status: "Pending",
+        sent_at: null,
+      };
+      const expectedOutput = {
+        notification_id: 11,
+        user_id: 2,
+        notification_type: "General",
+        message:
+          "A new webinar on e-commerce trends is scheduled for 2024-11-30. Register now!",
+        status: "Pending",
+        sent_at: null,
+      };
+      return request(app)
+        .post("/notifications")
+        .send(newNotification)
+        .expect(201)
+        .expect(({ body: notification }) => {
+          expect(notification).toEqual(expect.objectContaining(expectedOutput));
+          expect(notification).toHaveProperty("created_at");
+        });
+    });
+    test("DELETE 204: deletes a notification by its id", () => {
+      return request(app).delete('/notifications/1').expect(204)
     })
-  })
+  });
 });
