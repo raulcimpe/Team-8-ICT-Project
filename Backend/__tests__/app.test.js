@@ -137,4 +137,47 @@ describe("app", () => {
       })
     })
   })
+  describe("/appointments", () => {
+    test("GET 200: return all the appointments", () => {
+      return request(app).get('/appointments').expect(200).then(({body}) => {
+        expect(body.appointments).toHaveLength(7)
+        body.appointments.forEach((appointment) => {
+          expect(appointment).toHaveProperty('client_id')
+          expect(appointment).toHaveProperty('appointment_date')
+          expect(appointment).toHaveProperty('appointment_type')
+          expect(appointment).toHaveProperty('notes')
+          expect(appointment).toHaveProperty('status')
+        })
+      })
+    })
+    test("GET 200: return a specific appointment by the client id", () => {
+      return request(app).get('/appointments/1').expect(200).then(({body}) => {
+        expect(body.appointments).toHaveLength(2)
+      })
+    })
+    test("POST 201: returns a newly added appointment", () => {
+      const newAppointment = {
+        client_firstname: "Emma",
+        client_lastname: "Johnson",
+        appointment_date: "2024-12-23 11:00:00",
+        appointment_type: "Online",
+        status: "Scheduled",
+        notes: "A meeting to discuss the future plans"
+      }
+      const expectedOutput = {
+        appointment_id: 8,
+        client_id: 2,
+        appointment_date: "2024-12-23T11:00:00.000Z",
+        appointment_type: "Online",
+        status: "Scheduled",
+        notes: "A meeting to discuss the future plans"
+      }
+      return request(app).post('/appointments').send(newAppointment).expect(201).then(({body}) => {
+        expect(body).toMatchObject(expectedOutput)
+      })
+    })
+    test("DELETE 204: deletes an appointment by the appointment id", () => {
+      return request(app).delete("/appointments/1").expect(204)
+    })
+  })
 });
