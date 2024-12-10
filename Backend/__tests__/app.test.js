@@ -3,6 +3,7 @@ const request = require("supertest");
 const seed = require("../db/seeds/seed.js");
 const db = require("../db/connection.js");
 const testData = require("../db/data/test-data/index.js");
+const feedback = require("../db/data/test-data/feedback.js");
 
 beforeEach(() => {
   return seed(testData);
@@ -260,7 +261,61 @@ describe("app", () => {
         });
     });
     test("DELETE 204: deletes a notification by its id", () => {
-      return request(app).delete('/notifications/1').expect(204)
+      return request(app).delete("/notifications/1").expect(204);
+    });
+  });
+  describe("/feedback", () => {
+    test("GET 200: returns all the feedbacks by the project id", () => {
+      return request(app)
+        .get("/feedback/1")
+        .expect(200)
+        .then(({ body: { feedbacks } }) => {
+          expect(feedbacks).toHaveLength(1);
+          feedbacks.forEach((feedback) => {
+            expect(feedback).toHaveProperty("feedback_id");
+            expect(feedback).toHaveProperty("project_id");
+            expect(feedback).toHaveProperty("client_id");
+            expect(feedback).toHaveProperty("rating");
+            expect(feedback).toHaveProperty("review");
+            expect(feedback).toHaveProperty("created_at");
+          });
+        });
+    });
+    test("POST 201: insert a new feedback", () => {
+      const newFeedback = {
+        project_id: 4,
+        client_id: 2,
+        rating: 1,
+        review:
+          "The cybersecurity audit was thorough, but a bit more detail in the report would have been helpful.",
+        created_at: "2024-11-16 12:30:00",
+      };
+      const expectedOutput = {
+        feedback_id: 6,
+        project_id: 4,
+        client_id: 2,
+        rating: 1,
+        review:
+          "The cybersecurity audit was thorough, but a bit more detail in the report would have been helpful.",
+        created_at: "2024-11-16T12:30:00.000Z",
+      };
+      return request(app).post('/feedback').send(newFeedback).expect(201).then(({body: {feedback}}) => {
+        expect(feedback).toMatchObject(expectedOutput)
+      })
+    });
+    test("GET 200: returns all the feedback", () => {
+      return request(app).get('/feedback').expect(200).then(({body: {feedbacks}}) => {
+        expect(feedbacks).toHaveLength(5)
+        feedbacks.forEach((feedback) => {
+          expect(feedback).toHaveProperty('feedback_id')
+          expect(feedback).toHaveProperty('created_at')
+          expect(feedback).toHaveProperty('rating')
+          expect(feedback).toHaveProperty('review')
+          expect(feedback).toHaveProperty('project_id')
+          expect(feedback).toHaveProperty('client_id')
+
+        })
+      })
     })
   });
 });
