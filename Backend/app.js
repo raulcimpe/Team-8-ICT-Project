@@ -2,6 +2,7 @@ const express = require("express")
 
 const cors = require("cors")
 const { getAdmins, postAdmins } = require("./controllers/admin.controller")
+const { getUsers, postUsers } = require("./controllers/users.controller")
 
 const app = express()
 app.use(express.json())
@@ -9,5 +10,8 @@ app.use(cors())
 
 app.get('/admins', getAdmins)
 app.post('/admins', postAdmins)
+
+app.get('/users', getUsers)
+app.post('/users', postUsers)
 
 module.exports = app
