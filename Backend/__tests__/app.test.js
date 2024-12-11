@@ -380,4 +380,46 @@ describe("app", () => {
       })
     });
   });
+  describe("/projects", () => {
+    test("GET 200: returns an array of all the projects", () => {
+      return request(app).get('/projects').expect(200).then(({body: {projects}}) => {
+        expect(projects).toHaveLength(5)
+        projects.forEach((project) => {
+          expect(project).toHaveProperty('project_id')
+          expect(project).toHaveProperty('client_id')
+          expect(project).toHaveProperty('project_name')
+          expect(project).toHaveProperty('project_description')
+          expect(project).toHaveProperty('created_at')
+          expect(project).toHaveProperty('status')
+        })
+      })
+    })
+    test("GET 200: returns a project by its id", () => {
+      return request(app).get('/projects/1').expect(200).then(({body: {project}}) => {
+        expect(project.project_id).toBe(1)
+      })
+    })
+    test("POST 201: returns a newly added project", () => {
+      const newProject = {
+        client_id: 2,
+        project_name: "New Website",
+        project_description: "Creating a new project to make a website",
+        created_at: "2024-12-10 11:00:00",
+        status: "Pending"
+      }
+      return request(app).post('/projects').send(newProject).expect(201).then(({body: {project}}) => {
+        expect(project.client_id).toBe(2)
+        expect(project.project_name).toBe("New Website")
+        expect(project.project_description).toBe("Creating a new project to make a website")
+        expect(project.project_id).toBe(6)
+      })
+    })
+    test("PATCH 200: updates the status of a project by its id", () => {
+      const newStatus = {status: 'Completed'}
+      return request(app).patch('/projects/2').send(newStatus).expect(200).then(({body: {project}}) => {
+        expect(project.project_id).toBe(2)
+        expect(project.status).toBe('Completed')
+      })
+    })
+  })
 });
