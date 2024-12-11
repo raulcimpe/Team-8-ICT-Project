@@ -122,23 +122,7 @@ const seed = ({
     })
     .then(() => {
       return db.query(
-        `CREATE TABLE consultation_summaries (
-    summary_id SERIAL PRIMARY KEY,                    
-    appointment_id INT NOT NULL REFERENCES appointments(appointment_id) 
-        ON DELETE CASCADE,                             
-    client_id INT NOT NULL REFERENCES users(user_id)
-        ON DELETE CASCADE,                             
-    summary_text TEXT NOT NULL,                        
-    approval_status VARCHAR(20) DEFAULT 'Pending'      
-        CHECK (approval_status IN ('Pending', 'Approved', 'Rejected')),
-    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,   
-    approved_at TIMESTAMP                              
-);
-`
-      );
-    })
-    .then(() => {
-      return db.query(`CREATE TABLE projects (
+`CREATE TABLE projects (
     project_id SERIAL PRIMARY KEY,                     
     client_id INT NOT NULL REFERENCES users(user_id)   
         ON DELETE CASCADE,
@@ -147,6 +131,26 @@ const seed = ({
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,   
     status VARCHAR(20) DEFAULT 'Active'               
         CHECK (status IN ('Active', 'Completed', 'Canceled'))
+);
+`);
+    })
+    .then(() => {
+      return db.query(
+
+
+        `CREATE TABLE consultation_summaries (
+    summary_id SERIAL PRIMARY KEY,                    
+    appointment_id INT NOT NULL REFERENCES appointments(appointment_id) 
+        ON DELETE CASCADE,                             
+    client_id INT NOT NULL REFERENCES users(user_id)
+        ON DELETE CASCADE,    
+    project_id INT NOT NULL REFERENCES projects(project_id)
+        ON DELETE CASCADE,                         
+    summary_text TEXT NOT NULL,                        
+    approval_status VARCHAR(20) DEFAULT 'Pending'      
+        CHECK (approval_status IN ('Pending', 'Approved', 'Rejected')),
+    uploaded_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,   
+    approved_at TIMESTAMP                              
 );
 `);
     })
@@ -290,29 +294,6 @@ const seed = ({
       return db.query(insertNotificationsData);
     })
     .then(() => {
-      const insertConsultationSummariesData = format(
-        `INSERT INTO consultation_summaries (appointment_id, client_id, summary_text, approval_status, uploaded_at, approved_at) VALUES %L RETURNING *`,
-        consultationSummariesData.map(
-          ({
-            appointment_id,
-            client_id,
-            summary_text,
-            approval_status,
-            uploaded_at,
-            approved_at,
-          }) => [
-            appointment_id,
-            client_id,
-            summary_text,
-            approval_status,
-            uploaded_at,
-            approved_at,
-          ]
-        )
-      );
-      return db.query(insertConsultationSummariesData);
-    })
-    .then(() => {
       const insertProjectData = format(
         `INSERT INTO projects (client_id, project_name, project_description, created_at, status) VALUES %L RETURNING *`,
         projectsData.map(
@@ -332,6 +313,31 @@ const seed = ({
         )
       );
       return db.query(insertProjectData);
+    })
+    .then(() => {
+      const insertConsultationSummariesData = format(
+        `INSERT INTO consultation_summaries (appointment_id, client_id, project_id, summary_text, approval_status, uploaded_at, approved_at) VALUES %L RETURNING *`,
+        consultationSummariesData.map(
+          ({
+            appointment_id,
+            client_id,
+            project_id,
+            summary_text,
+            approval_status,
+            uploaded_at,
+            approved_at,
+          }) => [
+            appointment_id,
+            client_id,
+            project_id,
+            summary_text,
+            approval_status,
+            uploaded_at,
+            approved_at,
+          ]
+        )
+      );
+      return db.query(insertConsultationSummariesData);
     })
     .then(() => {
       const insertProjectStagesQuery = format(

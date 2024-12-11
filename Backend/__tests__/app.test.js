@@ -155,10 +155,13 @@ describe("app", () => {
         });
     });
     test("GET 200: returns ab object of a specific user by their id", () => {
-      return request(app).get('/users/2').expect(200).then(({body: {user}}) => {
-        expect(user.user_id).toBe(2)
-      })
-    })
+      return request(app)
+        .get("/users/2")
+        .expect(200)
+        .then(({ body: { user } }) => {
+          expect(user.user_id).toBe(2);
+        });
+    });
   });
   describe("/appointments", () => {
     test("GET 200: return all the appointments", () => {
@@ -304,23 +307,77 @@ describe("app", () => {
           "The cybersecurity audit was thorough, but a bit more detail in the report would have been helpful.",
         created_at: "2024-11-16T12:30:00.000Z",
       };
-      return request(app).post('/feedback').send(newFeedback).expect(201).then(({body: {feedback}}) => {
-        expect(feedback).toMatchObject(expectedOutput)
-      })
+      return request(app)
+        .post("/feedback")
+        .send(newFeedback)
+        .expect(201)
+        .then(({ body: { feedback } }) => {
+          expect(feedback).toMatchObject(expectedOutput);
+        });
     });
     test("GET 200: returns all the feedback", () => {
-      return request(app).get('/feedback').expect(200).then(({body: {feedbacks}}) => {
-        expect(feedbacks).toHaveLength(5)
-        feedbacks.forEach((feedback) => {
-          expect(feedback).toHaveProperty('feedback_id')
-          expect(feedback).toHaveProperty('created_at')
-          expect(feedback).toHaveProperty('rating')
-          expect(feedback).toHaveProperty('review')
-          expect(feedback).toHaveProperty('project_id')
-          expect(feedback).toHaveProperty('client_id')
-
-        })
+      return request(app)
+        .get("/feedback")
+        .expect(200)
+        .then(({ body: { feedbacks } }) => {
+          expect(feedbacks).toHaveLength(5);
+          feedbacks.forEach((feedback) => {
+            expect(feedback).toHaveProperty("feedback_id");
+            expect(feedback).toHaveProperty("created_at");
+            expect(feedback).toHaveProperty("rating");
+            expect(feedback).toHaveProperty("review");
+            expect(feedback).toHaveProperty("project_id");
+            expect(feedback).toHaveProperty("client_id");
+          });
+        });
+    });
+  });
+  describe("/consultation-summaries", () => {
+    test("GET 200: returns all the consultation summaries", () => {
+      return request(app)
+        .get("/consultation-summaries")
+        .expect(200)
+        .then(({ body: { consultationSummaries } }) => {
+          expect(consultationSummaries).toHaveLength(5);
+          consultationSummaries.forEach((consultationSummary) => {
+            expect(consultationSummary).toHaveProperty("appointment_id");
+            expect(consultationSummary).toHaveProperty("client_id");
+            expect(consultationSummary).toHaveProperty("project_id");
+            expect(consultationSummary).toHaveProperty("approval_status");
+            expect(consultationSummary).toHaveProperty("uploaded_at");
+            expect(consultationSummary).toHaveProperty("summary_text");
+            expect(consultationSummary).toHaveProperty("approved_at");
+          });
+        });
+    });
+    test("GET 200: returns all the consultation summaries by a project id", () => {
+      return request(app)
+        .get("/consultation-summaries/1")
+        .expect(200)
+        .then(({ body: { consultationSummaries } }) => {
+          expect(consultationSummaries).toHaveLength(2);
+        });
+    });
+    test("POST 201: returns a newly-added consultation summary", () => {
+      const newSummary = {
+        appointment_id: 2,
+        client_id: 2,
+        project_id: 2,
+        summary_text:
+          "Discussed client requirements for App Development. Agreed on a prototype delivery timeline.",
+        approval_status: "Approved",
+        uploaded_at: "2024-11-21 09:00:00",
+        approved_at: "2024-11-22 10:00:00",
+      };
+      return request(app).post('/consultation-summaries').send(newSummary).expect(201).then(({body: {consultationSummary}}) => {
+        expect(consultationSummary.appointment_id).toBe(2)
+        expect(consultationSummary.client_id).toBe(2)
+        expect(consultationSummary.project_id).toBe(2)
+        expect(consultationSummary).toHaveProperty('approval_status')
+        expect(consultationSummary).toHaveProperty('summary_text')
+        expect(consultationSummary).toHaveProperty('uploaded_at')
+        expect(consultationSummary).toHaveProperty('approved_at')
       })
-    })
+    });
   });
 });

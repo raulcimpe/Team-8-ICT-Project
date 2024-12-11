@@ -6,6 +6,7 @@ const { getUsers, postUsers, getUserById } = require("./controllers/users.contro
 const { getAppointments, getAppointmentsByClientId, postAppointments, deleteAppointmentsById } = require("./controllers/appointment.controller")
 const { getNotifications, getNotificationsById, postNotifications, deleteNotificationById } = require("./controllers/notification.controller")
 const { getFeedbacksById, postFeedback, getFeedback } = require("./controllers/feedback.controller")
+const { getConsultationSummaries, getConsultationSummariesById, postConsultationSummaries } = require("./controllers/consultationSummaries.controller")
 
 const app = express()
 app.use(express.json())
@@ -31,5 +32,9 @@ app.delete('/notifications/:notification_id', deleteNotificationById)
 app.get('/feedback/:project_id', getFeedbacksById)
 app.post('/feedback', postFeedback)
 app.get('/feedback', getFeedback)
+
+app.get('/consultation-summaries', getConsultationSummaries)
+app.get('/consultation-summaries/:project_id', getConsultationSummariesById)
+app.post('/consultation-summaries', postConsultationSummaries)
 
 module.exports = app
