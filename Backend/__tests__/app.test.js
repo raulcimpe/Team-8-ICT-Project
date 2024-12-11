@@ -154,6 +154,11 @@ describe("app", () => {
           expect(user).toMatchObject(expectedOutput);
         });
     });
+    test("GET 200: returns ab object of a specific user by their id", () => {
+      return request(app).get('/users/2').expect(200).then(({body: {user}}) => {
+        expect(user.user_id).toBe(2)
+      })
+    })
   });
   describe("/appointments", () => {
     test("GET 200: return all the appointments", () => {

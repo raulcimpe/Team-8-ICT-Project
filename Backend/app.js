@@ -2,7 +2,7 @@ const express = require("express")
 
 const cors = require("cors")
 const { getAdmins, postAdmins } = require("./controllers/admin.controller")
-const { getUsers, postUsers } = require("./controllers/users.controller")
+const { getUsers, postUsers, getUserById } = require("./controllers/users.controller")
 const { getAppointments, getAppointmentsByClientId, postAppointments, deleteAppointmentsById } = require("./controllers/appointment.controller")
 const { getNotifications, getNotificationsById, postNotifications, deleteNotificationById } = require("./controllers/notification.controller")
 const { getFeedbacksById, postFeedback, getFeedback } = require("./controllers/feedback.controller")
@@ -16,6 +16,7 @@ app.post('/admins', postAdmins)
 
 app.get('/users', getUsers)
 app.post('/users', postUsers)
+app.get('/users/:user_id', getUserById)
 
 app.get('/appointments', getAppointments)
 app.get('/appointments/:client_id', getAppointmentsByClientId)
