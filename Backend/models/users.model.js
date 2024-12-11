@@ -55,3 +55,9 @@ exports.insertUsers = ({
         return rows[0]
     });
 };
+
+exports.findUserById = (id) => {
+  return db.query(`SELECT * FROM users WHERE user_id = $1`, [id]).then(({rows}) => {
+    return rows[0]
+  })
+}
