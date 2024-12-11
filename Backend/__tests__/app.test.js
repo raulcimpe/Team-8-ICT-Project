@@ -369,57 +369,122 @@ describe("app", () => {
         uploaded_at: "2024-11-21 09:00:00",
         approved_at: "2024-11-22 10:00:00",
       };
-      return request(app).post('/consultation-summaries').send(newSummary).expect(201).then(({body: {consultationSummary}}) => {
-        expect(consultationSummary.appointment_id).toBe(2)
-        expect(consultationSummary.client_id).toBe(2)
-        expect(consultationSummary.project_id).toBe(2)
-        expect(consultationSummary).toHaveProperty('approval_status')
-        expect(consultationSummary).toHaveProperty('summary_text')
-        expect(consultationSummary).toHaveProperty('uploaded_at')
-        expect(consultationSummary).toHaveProperty('approved_at')
-      })
+      return request(app)
+        .post("/consultation-summaries")
+        .send(newSummary)
+        .expect(201)
+        .then(({ body: { consultationSummary } }) => {
+          expect(consultationSummary.appointment_id).toBe(2);
+          expect(consultationSummary.client_id).toBe(2);
+          expect(consultationSummary.project_id).toBe(2);
+          expect(consultationSummary).toHaveProperty("approval_status");
+          expect(consultationSummary).toHaveProperty("summary_text");
+          expect(consultationSummary).toHaveProperty("uploaded_at");
+          expect(consultationSummary).toHaveProperty("approved_at");
+        });
     });
   });
   describe("/projects", () => {
     test("GET 200: returns an array of all the projects", () => {
-      return request(app).get('/projects').expect(200).then(({body: {projects}}) => {
-        expect(projects).toHaveLength(5)
-        projects.forEach((project) => {
-          expect(project).toHaveProperty('project_id')
-          expect(project).toHaveProperty('client_id')
-          expect(project).toHaveProperty('project_name')
-          expect(project).toHaveProperty('project_description')
-          expect(project).toHaveProperty('created_at')
-          expect(project).toHaveProperty('status')
-        })
-      })
-    })
+      return request(app)
+        .get("/projects")
+        .expect(200)
+        .then(({ body: { projects } }) => {
+          expect(projects).toHaveLength(5);
+          projects.forEach((project) => {
+            expect(project).toHaveProperty("project_id");
+            expect(project).toHaveProperty("client_id");
+            expect(project).toHaveProperty("project_name");
+            expect(project).toHaveProperty("project_description");
+            expect(project).toHaveProperty("created_at");
+            expect(project).toHaveProperty("status");
+          });
+        });
+    });
     test("GET 200: returns a project by its id", () => {
-      return request(app).get('/projects/1').expect(200).then(({body: {project}}) => {
-        expect(project.project_id).toBe(1)
-      })
-    })
+      return request(app)
+        .get("/projects/1")
+        .expect(200)
+        .then(({ body: { project } }) => {
+          expect(project.project_id).toBe(1);
+        });
+    });
     test("POST 201: returns a newly added project", () => {
       const newProject = {
         client_id: 2,
         project_name: "New Website",
         project_description: "Creating a new project to make a website",
         created_at: "2024-12-10 11:00:00",
-        status: "Pending"
-      }
-      return request(app).post('/projects').send(newProject).expect(201).then(({body: {project}}) => {
-        expect(project.client_id).toBe(2)
-        expect(project.project_name).toBe("New Website")
-        expect(project.project_description).toBe("Creating a new project to make a website")
-        expect(project.project_id).toBe(6)
-      })
-    })
+        status: "Pending",
+      };
+      return request(app)
+        .post("/projects")
+        .send(newProject)
+        .expect(201)
+        .then(({ body: { project } }) => {
+          expect(project.client_id).toBe(2);
+          expect(project.project_name).toBe("New Website");
+          expect(project.project_description).toBe(
+            "Creating a new project to make a website"
+          );
+          expect(project.project_id).toBe(6);
+        });
+    });
     test("PATCH 200: updates the status of a project by its id", () => {
-      const newStatus = {status: 'Completed'}
-      return request(app).patch('/projects/2').send(newStatus).expect(200).then(({body: {project}}) => {
-        expect(project.project_id).toBe(2)
-        expect(project.status).toBe('Completed')
+      const newStatus = { status: "Completed" };
+      return request(app)
+        .patch("/projects/2")
+        .send(newStatus)
+        .expect(200)
+        .then(({ body: { project } }) => {
+          expect(project.project_id).toBe(2);
+          expect(project.status).toBe("Completed");
+        });
+    });
+  });
+  describe("/project-stages", () => {
+    test("GET 200: returns all the project stages", () => {
+      return request(app)
+        .get("/project-stages")
+        .expect(200)
+        .then(({ body: { projectStages } }) => {
+          expect(projectStages).toHaveLength(14);
+          projectStages.forEach((projectStage) => {
+            expect(projectStage).toHaveProperty("project_id");
+            expect(projectStage).toHaveProperty("stage_name");
+            expect(projectStage).toHaveProperty("status");
+            expect(projectStage).toHaveProperty("start_date");
+            expect(projectStage).toHaveProperty("completion_date");
+            expect(projectStage).toHaveProperty("notes");
+          });
+        });
+    });
+    test("GET 200: returns all the project stages of a specific project", () => {
+      return request(app)
+        .get("/project-stages/2")
+        .expect(200)
+        .then(({ body: { projectStages } }) => {
+          expect(projectStages).toHaveLength(3);
+          projectStages.forEach((projectStage) => {
+            expect(projectStage.project_id).toBe(2);
+          });
+        });
+    });
+    test("POST 201: returns a newly added project stage", () => {
+      const newProjectStage = {
+        project_id: 1,
+        stage_name: "Approval of consultation summary",
+        status: "Pending",
+        start_date: null,
+        completion_date: null,
+        notes: "Waiting for consultation to be approved.",
+      };
+      return request(app).post('/project-stages').send(newProjectStage).expect(201).then(({body: {projectStage}}) => {
+        expect(projectStage.project_id).toBe(1)
+        expect(projectStage.stage_name).toBe("Approval of consultation summary")
+        expect(projectStage.status).toBe("Pending")
+        expect(projectStage.notes).toBe("Waiting for consultation to be approved.")
       })
-    })
-  })
+    });
+  });
 });
