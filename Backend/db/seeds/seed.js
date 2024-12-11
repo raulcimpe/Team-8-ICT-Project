@@ -157,7 +157,16 @@ const seed = ({
     stage_id SERIAL PRIMARY KEY,                     
     project_id INT NOT NULL REFERENCES appointments(appointment_id)
         ON DELETE CASCADE,                          
-    stage_name VARCHAR(100) NOT NULL,               
+    stage_name VARCHAR(100) NOT NULL 
+    CHECK (stage_name IN (
+          'Registration form submission', 
+          'Initial consultation booking', 
+          'Uploading of interview summary', 
+          'Approval of consultation summary', 
+          'Solution approved', 
+          'Delivery of solutions', 
+          'Business Feedback collection'
+        )),                  
     status VARCHAR(20) DEFAULT 'Pending'            
         CHECK (status IN ('Pending', 'Completed', 'In Progress')),
     start_date TIMESTAMP,                           
