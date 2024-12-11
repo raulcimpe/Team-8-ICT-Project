@@ -25,7 +25,7 @@ module.exports = [
       project_name: "Branding Strategy Development",
       project_description: "Develop a new branding strategy for the client’s retail business.",
       created_at: "2024-11-07 14:00:00",
-      status: "Canceled",
+      status: "Pending",
     },
     {
       client_id: 5,

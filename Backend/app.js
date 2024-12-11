@@ -7,6 +7,7 @@ const { getAppointments, getAppointmentsByClientId, postAppointments, deleteAppo
 const { getNotifications, getNotificationsById, postNotifications, deleteNotificationById } = require("./controllers/notification.controller")
 const { getFeedbacksById, postFeedback, getFeedback } = require("./controllers/feedback.controller")
 const { getConsultationSummaries, getConsultationSummariesById, postConsultationSummaries } = require("./controllers/consultationSummaries.controller")
+const { getProjects, getProjectById, postProject, patchProjectById } = require("./controllers/project.controller")
 
 const app = express()
 app.use(express.json())
@@ -36,5 +37,10 @@ app.get('/feedback', getFeedback)
 app.get('/consultation-summaries', getConsultationSummaries)
 app.get('/consultation-summaries/:project_id', getConsultationSummariesById)
 app.post('/consultation-summaries', postConsultationSummaries)
+
+app.get('/projects', getProjects)
+app.get('/projects/:project_id', getProjectById)
+app.post('/projects', postProject)
+app.patch('/projects/:project_id', patchProjectById)
 
 module.exports = app

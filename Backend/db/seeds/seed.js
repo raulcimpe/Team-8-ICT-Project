@@ -130,14 +130,12 @@ const seed = ({
     project_description TEXT,                         
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,   
     status VARCHAR(20) DEFAULT 'Active'               
-        CHECK (status IN ('Active', 'Completed', 'Canceled'))
+        CHECK (status IN ('Active', 'Completed', 'Canceled', 'Pending'))
 );
 `);
     })
     .then(() => {
       return db.query(
-
-
         `CREATE TABLE consultation_summaries (
     summary_id SERIAL PRIMARY KEY,                    
     appointment_id INT NOT NULL REFERENCES appointments(appointment_id) 
